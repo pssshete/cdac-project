@@ -1,0 +1,60 @@
+DataBase Design
+
+1. Employee
+
+create table Employee
+(
+
+);
+
+
+2.Salary
+
+create table Salary
+(
+
+);
+
+3.Department
+
+create table Department
+(
+
+);
+
+4.Attend
+
+create table Attend
+(
+
+);
+
+5.Bank
+
+create table Bank
+(
+
+); 
+
+6.Events
+
+create table Events
+(
+
+);
+
+7.Query
+
+create table Query
+(
+
+);
+
+8.LoginInfo
+
+create table LoginInfo
+(
+
+);
+
+9.
