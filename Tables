@@ -1,0 +1,121 @@
+DataBase Design
+
+1. Employee
+
+create table EMPLOYEE
+(
+	Emp_id int(10) PRIMARY KEY AUTO_INCREMENT,
+	First varchar(30) not null CHECK (First=upper(First)),
+	Middle varchar(30) not null CHECK (Middle=upper(Middle)),
+	Last varchar(30) not null CHECK (Last=upper(Last)),
+	DOB date not null,
+	Address1 varchar(50) not null,
+	Address2 varchar(50),
+	Email varchar(30) unique,
+	Mobile char(15) not null unique,
+	Age int not null CHECK (Age>=18),
+	State varchar(15) not null,
+	City varchar(15) not null,
+	Pincode varchar(6) not null,
+	Gender ENUM ('M','F'),
+	Image varchar(20) not null,
+	AdhaarNo varchar(20) unique,
+	Dept_no int(10),
+	Foreign key(Dept_no) references DEPARTMENT(Dept_no),
+	Acc_id int(10),
+	Foreign key(Acc_id) references BANK(Acc_id)
+	 	
+);
+
+
+2.Salary
+
+create table SALARY
+(
+	Sal_id int(10) PRIMARY KEY AUTO_INCREMENT,
+	Salary int not null,
+	Basic_sal int not null,
+	DA int not null,
+	HRA int not null,
+	PF int not null,
+	Gross_sal int not null,
+	EPF int not null,
+	LIC int not null,
+	Total_deduction int not null,
+	Net_sal int not null,
+	Emp_id int(10),
+	Foreign key(Emp_id) references EMPLOYEE(Emp_id)		
+		
+);
+
+3.Department
+
+create table DEPARTMENT
+(
+	Dept_no int(10) PRIMARY KEY AUTO_INCREMENT,
+	Dept_name varchar(30) not null,
+		
+);
+
+4.Attend
+
+create table ATTENDANCE
+(
+	Att_id int PRIMARY KEY AUTO_INCREMENT,
+	Att_month int not null,
+	Att_present int not null,
+	Att_absent int not null,
+	Att_medical int,
+	Att_year date,
+	Att_total int not null
+	
+);
+
+5.Bank
+
+create table BANK
+(
+	Acc_id int PRIMARY KEY AUTO_INCREMENT, 
+	Bank_id int,		
+	Bank_name varchar(30) not null,
+	Acc_no varchar(30) not null,
+	Ifsc_code int not null,
+	Emp_id int(10) unique,
+	Zip_code int(6) not null,
+		
+); 
+
+6.Events
+
+create table EVENTS
+(
+	Meet_id int PRIMARY KEY AUTO_INCREMENT,
+	Meetings varchar(50) not null,
+	Dept_no int(10),
+	Foreign key(dept_no) references Department(dept_no)
+);
+
+7.Query
+
+create table QUERY
+(
+	Query_id int PRIMARY KEY AUTO_INCREMENT,
+	Message varchar(100) not null,
+	Email varchar(30) not null CHECK (Email LIKE '%___@___%'),
+	Emp_id int(10),
+	Foreign key(emp_id) references Employee(emp_id)	
+			
+);
+
+8.LoginInfo
+
+create table LOGININFO
+(
+	login_id int PRIMARY KEY AUTO_INCREMENT,
+	Time date,
+	Emp_id int(10),
+	Dept_no int(10),
+	Foreign key(emp_id) references EMPLOYEE(emp_id),
+	Foreign key(dept_no) references DEPARTMENT(dept_no)
+);
+
